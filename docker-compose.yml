@@ -9,7 +9,7 @@ services:
     environment:
       POSTGRES_DB: litellm
       POSTGRES_USER: litellm
-      POSTGRES_PASSWORD: litellm123
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
 
     volumes:
       - postgres_data:/var/lib/postgresql/data
@@ -49,8 +49,9 @@ services:
       - "4000:4000"
 
     environment:
-      - DATABASE_URL=postgresql://litellm:litellm123@postgres:5432/litellm
+      - DATABASE_URL=${DATABASE_URL}
       - STORE_MODEL_IN_DB=True
+      - LITELLM_MASTER_KEY=${LITELLM_MASTER_KEY}
 
       # Presidio
       - PRESIDIO_ANALYZER_API_BASE=http://presidio-analyzer:3000

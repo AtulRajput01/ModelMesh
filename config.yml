@@ -1,7 +1,7 @@
 model_list: []
 
 general_settings:
-  master_key: "secretpass#2*(useown}!"
+  master_key: ${LITELLM_MASTER_KEY}
   store_model_in_db: true
 
 litellm_settings:
