@@ -1,0 +1,99 @@
+{
+  "encoder_type": "bedrock",
+  "encoder_name": "cohere.embed-multilingual-v3",
+
+  "routes": [
+    {
+      "name": "us.anthropic.claude-sonnet-4-6",
+      "utterances": [
+        "design a scalable cloud architecture",
+        "analyze a complex problem",
+        "review and improve this code",
+        "debug this application",
+        "perform root cause analysis",
+        "security review",
+        "explain this architecture",
+        "compare different technical approaches",
+        "create an implementation plan",
+        "long document analysis",
+        "complex reasoning task",
+        "enterprise decision making",
+        "generate production ready code",
+        "analyze financial scenarios",
+        "technical design discussion",
+        "design kubernetes architecture",
+        "distributed systems design",
+        "system design interview",
+        "high availability architecture",
+        "incident investigation",
+        "performance optimization"
+      ],
+      "description": "Premium model for complex reasoning, architecture, coding and analysis",
+      "score_threshold": 0.15
+    },
+
+    {
+      "name": "google.gemma-3-27b-it",
+      "utterances": [
+        "summarize this document",
+        "rewrite this email professionally",
+        "create documentation",
+        "draft a proposal",
+        "prepare meeting notes",
+        "translate this text",
+        "rephrase this paragraph",
+        "create a report",
+        "generate release notes",
+        "create user documentation",
+        "prepare executive summary",
+        "create knowledge base article",
+        "generate SOP documentation",
+        "improve grammar and clarity",
+        "generate standard business content"
+      ],
+      "description": "Enterprise productivity, documentation and communication tasks",
+      "score_threshold": 0.15
+    },
+
+    {
+      "name": "meta.llama4-maverick-17b-instruct-v1:0",
+      "utterances": [
+        "brainstorm new business ideas",
+        "generate marketing content",
+        "write a blog post",
+        "create social media content",
+        "creative writing",
+        "generate product ideas",
+        "branding discussion",
+        "innovation workshop",
+        "campaign ideas",
+        "story writing",
+        "creative brainstorming",
+        "startup ideation",
+        "marketing strategy"
+      ],
+      "description": "Creative ideation, marketing and innovation workloads",
+      "score_threshold": 0.15
+    },
+
+    {
+      "name": "us.amazon.nova-lite-v1:0",
+      "utterances": [
+        "hello",
+        "hi",
+        "good morning",
+        "thank you",
+        "tell me a joke",
+        "simple question",
+        "casual conversation",
+        "basic assistance",
+        "general chit chat",
+        "quick factual question",
+        "how are you",
+        "good evening"
+      ],
+      "description": "Low-cost model for lightweight interactions and casual conversations",
+      "score_threshold": 0.15
+    }
+  ]
+}
