@@ -7,3 +7,8 @@ general_settings:
 litellm_settings:
   modify_params: true
 
+guardrails:
+  - guardrail_name: presidio-pre-guard
+    litellm_params:
+      guardrail: presidio
+      mode: pre_call
