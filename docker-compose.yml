@@ -1,0 +1,79 @@
+version: "3.8"
+
+services:
+  postgres:
+    image: postgres:16
+    container_name: litellm-postgres
+    restart: unless-stopped
+
+    environment:
+      POSTGRES_DB: litellm
+      POSTGRES_USER: litellm
+      POSTGRES_PASSWORD: litellm123
+
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+    networks:
+      - litellm
+
+  presidio-analyzer:
+    image: mcr.microsoft.com/presidio-analyzer:latest
+    container_name: presidio-analyzer
+    restart: unless-stopped
+
+    ports:
+      - "5002:3000"
+
+    networks:
+      - litellm
+
+  presidio-anonymizer:
+    image: mcr.microsoft.com/presidio-anonymizer:latest
+    container_name: presidio-anonymizer
+    restart: unless-stopped
+
+    ports:
+      - "5001:3000"
+
+    networks:
+      - litellm
+
+  litellm:
+    image: docker.litellm.ai/berriai/litellm:main-latest
+    container_name: litellm
+    restart: unless-stopped
+
+    ports:
+      - "4000:4000"
+
+    environment:
+      - DATABASE_URL=postgresql://litellm:litellm123@postgres:5432/litellm
+      - STORE_MODEL_IN_DB=True
+
+      # Presidio
+      - PRESIDIO_ANALYZER_API_BASE=http://presidio-analyzer:3000
+      - PRESIDIO_ANONYMIZER_API_BASE=http://presidio-anonymizer:3000
+
+    volumes:
+      - ./config.yml:/app/config.yml
+      - ./router.json:/app/router.json
+
+    depends_on:
+      - postgres
+      - presidio-analyzer
+      - presidio-anonymizer
+
+    command:
+      - "--config"
+      - "/app/config.yml"
+
+    networks:
+      - litellm
+
+networks:
+  litellm:
+    external: true
+
+volumes:
+  postgres_data:
